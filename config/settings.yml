@@ -24,3 +24,5 @@ lang:
 page_size: 8
 trainee_report: "trainee_report"
 supervisor_report: "supervisor_report"
+enabled_btn: "greeny"
+disabled_btn: "secondary"

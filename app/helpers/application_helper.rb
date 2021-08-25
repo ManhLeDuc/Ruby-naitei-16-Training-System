@@ -11,4 +11,16 @@ module ApplicationHelper
       Settings.supervisor_report
     end
   end
+
+  def hasnt_finished_course
+    @finished_rate != 100
+  end
+
+  def get_btn_type
+    if hasnt_finished_course
+      Settings.disabled_btn
+    else
+      Settings.enabled_btn
+    end
+  end
 end
