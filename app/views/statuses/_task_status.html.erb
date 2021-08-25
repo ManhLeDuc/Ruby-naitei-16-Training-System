@@ -5,17 +5,35 @@
   <div class="col-8 align-items-center d-flex">
     <%= task_status.task_description %>
   </div>
-  <div class="col-2">
-    <% if task_status.start? %>
-      <%= form_tag status_path, method: :patch, remote: true do %>
-        <%= hidden_field_tag :status_id, task_status.id %>
-        <%= hidden_field_tag :status, :finished %>
-        <%= submit_tag t("complete_status"), class: "btn btn-primary btn-greeny my-2" %>
+  <% if current_user? task_status.enrollment.user %>
+    <div class="col-2">
+      <% if task_status.finishable.start_time > Time.now.utc %>
+        <h5 class="mb-0">
+          <span class="badge bg-info my-2 py-3 px-2"><%= t "not_start" %></span>
+        </h5>
+      <% elsif task_status.start? %>
+        <%= form_tag status_path, method: :patch, remote: true do %>
+          <%= hidden_field_tag :status_id, task_status.id %>
+          <%= hidden_field_tag :status, :finished %>
+          <%= submit_tag t("complete_status"), class: "btn btn-primary btn-greeny my-2" %>
+        <% end %>
+      <% else %>
+        <h5 class="mb-0">
+          <span class="badge bg-info my-2 py-3 px-2"><%= t "done_status" %></span>
+        </h5>
       <% end %>
-    <% else %>
-      <h5 class="mb-0">
-        <span class="badge bg-info my-2 py-3 px-2"><%= t "done_status" %></span>
-      </h5>
-    <% end %>
-  </div>
+    </div>
+  <% else %>
+    <div class="col-2">
+      <% if task_status.start? %>
+        <h5 class="mb-0">
+          <span class="badge bg-info my-2 py-3 px-2"><%= t "not_done_status" %></span>
+        </h5>
+      <% else %>
+        <h5 class="mb-0">
+          <span class="badge bg-info my-2 py-3 px-2"><%= t "done_status" %></span>
+        </h5>
+      <% end %>
+    </div>
+  <% end %>
 </div>

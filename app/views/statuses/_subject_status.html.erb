@@ -8,15 +8,5 @@
       <%= @finished_rate %>%
     </h5>
   </div>
-  <% if @status.finished? %>
-    <h5>
-      <span class="badge bg-info my-2 py-3 px-2"><%= t "done_status" %></span>
-    </h5>
-  <% else %>
-    <%= form_tag status_path, method: :patch, remote: true do %>
-      <%= hidden_field_tag :status_id, @status.id %>
-      <%= hidden_field_tag :status, :finished %>
-      <%= submit_tag t("complete_status"), class: "btn btn-#{get_btn_type} me-4", disabled: hasnt_finished_course %>
-    <% end %>
-  <% end %>
+  <%= render partial: "finish_button", locals: {object: @status} %>
 </div>

@@ -68,4 +68,8 @@ class ApplicationController < ActionController::Base
       format.js{render js: "alert('#{message}')"}
     end
   end
+
+  def updateable_course_only course
+    fail_respond t("finished_course"), course if course.finish_time
+  end
 end

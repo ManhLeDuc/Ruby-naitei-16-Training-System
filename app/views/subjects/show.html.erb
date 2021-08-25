@@ -1,6 +1,6 @@
 <div class="task-container">
   <h3>
-    <%= link_to @subject.course.name, course_path(@subject.course.id), class: "btn btn-info" %>
+    <%= link_to @subject.name, course_path(@subject.course.id), class: "btn btn-info" %>
     <%= t ".task_list" %>(<%= @tasks.count %>)
   </h3>
   <table class="table">

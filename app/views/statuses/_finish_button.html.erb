@@ -1,0 +1,23 @@
+<% if current_user? object.enrollment.user %>
+  <% if object.finished? %>
+    <h5>
+      <span class="badge bg-info my-2 py-3 px-2"><%= t "done_status" %></span>
+    </h5>
+  <% else %>
+    <%= form_tag status_path, method: :patch, remote: true do %>
+      <%= hidden_field_tag :status_id, object.id %>
+      <%= hidden_field_tag :status, :finished %>
+      <%= submit_tag t("complete_status"), class: "btn btn-#{get_btn_type} me-4", disabled: hasnt_finished_course %>
+    <% end %>
+  <% end %>
+<% else %>
+  <% if object.finished? %>
+    <h5>
+      <span class="badge bg-info my-2 py-3 px-2"><%= t "done_status" %></span>
+    </h5>
+  <% else %>
+    <h5>
+      <span class="badge bg-info my-2 py-3 px-2"><%= t "not_done_status" %></span>
+    </h5>
+  <% end %>
+<% end %>

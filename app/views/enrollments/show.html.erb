@@ -3,7 +3,7 @@
 <div class="tab-content" id="nav-tabContent">
   <div class="tab-pane fade show active" id="nav-subjects" role="tabpanel" aria-labelledby="nav-subjects-tab">
     <div class="subject-container">
-      <h3><%= t "subjects_list" %></h3>
+      <h3><%= "#{t("progress_of")} #{@enrollment.user.name}" %></h3>
       <%= render partial: "subject_status", collection: @subject_statuses%>
     </div>
   </div>

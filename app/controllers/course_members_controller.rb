@@ -2,6 +2,7 @@ class CourseMembersController < ApplicationController
   before_action :logged_in_user
   before_action ->{load_course params[:course_id]}, only: :create
   before_action ->{correct_supervisor @course}, only: :create
+  before_action ->{updateable_course_only @course}, only: %i(create destroy)
   before_action :load_user_by_email, only: :create
 
   rescue_from ActiveRecord::RecordNotUnique, with: :record_not_unique_rescue

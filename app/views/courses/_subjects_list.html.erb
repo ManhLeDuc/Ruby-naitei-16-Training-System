@@ -15,7 +15,9 @@
     </tbody>
   </table>
   <%= paginate @subjects, theme: "bootstrap-5" %>
-  <section>
-    <%= render "subjects/subject_form" %>
-  </section>
+  <% unless @course.finish_time %>
+    <section>
+      <%= render "subjects/subject_form" %>
+    </section>
+  <% end %>
 </div>

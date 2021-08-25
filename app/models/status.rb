@@ -36,4 +36,14 @@ class Status < ApplicationRecord
       end
     end
   end
+
+  def status_text
+    if finished?
+      I18n.t "finished"
+    elsif finishable.start_time > Time.now.utc
+      I18n.t "not_start"
+    else
+      I18n.t "in_progress"
+    end
+  end
 end
