@@ -16,6 +16,8 @@ gem "puma", "~> 4.1"
 gem "rails", "~> 6.0.4"
 gem "rails-i18n", "~> 6.0.0"
 gem "sass-rails", ">= 6"
+gem "simplecov"
+gem "simplecov-rcov"
 gem "turbolinks", "~> 5"
 gem "webpacker", "~> 4.0"
 
